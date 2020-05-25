@@ -7,6 +7,7 @@ Group:          Development/Libraries/C and C++
 URL:            https://github.com/seccomp/libseccomp.git
 Source:         https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Patch0:         0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
+Patch1:         0002-tests-allow-sb2-to-accelerate-seq-on-SailfishOS.patch
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  fdupes

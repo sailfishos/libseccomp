@@ -1,0 +1,44 @@
+From d1f65336db43fc962355fbb09aa1e7b6736b2c50 Mon Sep 17 00:00:00 2001
+From: Frajo Haider <f_haider@gmx.at>
+Date: Mon, 25 May 2020 16:40:45 +0300
+Subject: [PATCH 1/1] tests: allow sb2 to accelerate seq on SailfishOS
+
+---
+ tests/regression | 15 ++++-----------
+ 1 file changed, 4 insertions(+), 11 deletions(-)
+
+diff --git a/tests/regression b/tests/regression
+index ec487d1..9b63d22 100755
+--- a/tests/regression
++++ b/tests/regression
+@@ -197,23 +197,16 @@ function get_range() {
+ # tool as, at least, seq of coreutils v8.23 and v8.24 has problems on 32 bit
+ # ARM for large numbers (see the mailing thread at
+ # https://groups.google.com/forum/#!topic/libseccomp/VtrClkXxLGA).
++# On SailfishOS we do not use miniseq in order to speed up the build, sb2 will
++# accelerate seq, the rationale for being able to use seq even if the arm
++# version might be broken, is that sb2 will use the host(x86) version anyways.
+ #
+ # Arguments:
+ #     1    starting value
+ #     2    last value
+ #
+ function get_seq() {
+-	# NOTE: this whole thing is a bit hacky, but we need to search around
+-	#       for miniseq to fix 'make distcheck', someday we should fix this
+-	if [[ -x ./miniseq ]]; then
+-		./miniseq "$1" "$2"
+-	elif [[ -x $basedir/miniseq ]]; then
+-		$basedir/miniseq "$1" "$2"
+-	else
+-		# we're often run from a subshell, so we can't simply exit
+-		echo "error: unable to find miniseq" >&2
+-		kill $pid
+-	fi
++    seq "$1" "$2"
+ }
+ 
+ #
+-- 
+2.25.4
+
