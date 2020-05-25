@@ -6,6 +6,7 @@ License:        LGPLv2.1
 Group:          Development/Libraries/C and C++
 URL:            https://github.com/seccomp/libseccomp.git
 Source:         https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
+Patch0:         0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  fdupes
@@ -37,7 +38,7 @@ This package contains the development files and debugging utilities
 for libseccomp.
 
 %prep
-%setup -q -n %{name}-%{version}/upstream
+%autosetup -n %{name}-%{version}/upstream -p1
 
 %build
 %autogen
