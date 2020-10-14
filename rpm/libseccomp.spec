@@ -2,8 +2,7 @@ Name:           libseccomp
 Version:        2.4.2
 Release:        1
 Summary:        An Enhanced Seccomp (mode 2) Helper Library
-License:        LGPLv2.1
-Group:          Development/Libraries/C and C++
+License:        LGPLv2
 URL:            https://github.com/seccomp/libseccomp.git
 Source:         https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
 Patch0:         0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
@@ -24,7 +23,6 @@ familiar to, and easily adopted by application developers.
 
 %package devel
 Summary:        Development files for libseccomp, an enhanced Seccomp (mode 2) helper library
-Group:          Development/Libraries/C and C++
 Requires:       %name = %version
 
 %description devel
@@ -64,7 +62,7 @@ make check
 %files
 %defattr(-,root,root)
 %_libdir/%name.so.2*
-%doc LICENSE
+%license LICENSE
 
 %files devel
 %defattr(-,root,root)
