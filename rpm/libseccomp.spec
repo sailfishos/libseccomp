@@ -51,9 +51,6 @@ find "%{buildroot}/%{_libdir}" -type f -name "*.la" -delete;
 rm -r %{buildroot}/%{_mandir}
 %fdupes %{buildroot}/%{_prefix}
 
-%check
-make check
-
 %post -p /sbin/ldconfig
 
 %postun -p /sbin/ldconfig
