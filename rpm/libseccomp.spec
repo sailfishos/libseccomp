@@ -1,17 +1,17 @@
 Name:           libseccomp
-Version:        2.4.2
+Version:        2.5.2
 Release:        1
 Summary:        An Enhanced Seccomp (mode 2) Helper Library
 License:        LGPLv2
 URL:            https://github.com/seccomp/libseccomp.git
 Source:         https://github.com/seccomp/libseccomp/releases/download/v%{version}/%{name}-%{version}.tar.gz
-Patch0:         0001-tests-rely-on-__SNR_xxx-instead-of-__NR_xxx-for-sysc.patch
 Patch1:         0002-tests-allow-sb2-to-accelerate-seq-on-SailfishOS.patch
 BuildRequires:  autoconf
 BuildRequires:  automake
 BuildRequires:  fdupes
 BuildRequires:  libtool
 BuildRequires:  pkgconfig
+BuildRequires:  gperf
 
 %description
 The libseccomp library provides and easy to use, platform
@@ -40,9 +40,8 @@ for libseccomp.
 %autosetup -n %{name}-%{version}/upstream -p1
 
 %build
-%autogen
-%configure --disable-static
-make %{?jobs:-j%jobs}
+%reconfigure --disable-static
+%make_build
 
 %install
 rm -rf %{buildroot}
